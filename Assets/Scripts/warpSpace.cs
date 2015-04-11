@@ -27,7 +27,7 @@ public class warpSpace : MonoBehaviour {
 		originalX = playerShiftX;
 		originalY = playerShiftY;
 		originalZ = playerShiftZ;
-		Debug.Log ("(x,y,z original = (" + playerShiftX + "," + playerShiftY + "," + playerShiftZ + ")");
+		//Debug.Log ("(x,y,z original = (" + playerShiftX + "," + playerShiftY + "," + playerShiftZ + ")");
 
 		targetOriginalScale = targetObject.transform.localScale;
 	}

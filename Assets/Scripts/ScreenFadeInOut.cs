@@ -15,7 +15,7 @@ public class ScreenFadeInOut : MonoBehaviour
 	{
 		
 		// Set the texture so that it is the the size of the screen and covers it.
-		GetComponent<GUITexture>().pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
+		GetComponent<GUITexture>().pixelInset = new Rect(0,0, Screen.width * 4f, Screen.height * 8f);
 		GetComponent<GUITexture>().color = Color.white;
 	}
 	
@@ -83,10 +83,15 @@ public class ScreenFadeInOut : MonoBehaviour
 		// If the screen is almost black...
 		if(GetComponent<GUITexture>().color.a >= 0.95f){
 			// ... load the next level.
-			
+			int currentLayer = PlayerPrefs.GetInt("layerProgress");
+			Debug.Log ("Leaving layer " + currentLayer);
+			PlayerPrefs.SetInt("layerProgress", currentLayer+1);
 			int lvlIndex = Application.loadedLevel;
-			int levelCount = Application.levelCount;
+			int levelCount = Application.levelCount - 1;
 			int loadMe = lvlIndex;
+
+			Debug.Log ("this level index = " + lvlIndex + ", level count = " + levelCount);
+
 			if (lvlIndex < levelCount){
 				loadMe = lvlIndex + 1;
 			} else {

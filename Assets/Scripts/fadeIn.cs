@@ -58,16 +58,16 @@ public class fadeIn : MonoBehaviour {
 			field2.SetValue (dofs, f2Pos);
 			f1Pos -= increment;
 			if (f2Pos < 26.6){
-				f2Pos += increment;}
+				f2Pos += increment * Time.deltaTime * 50f;}
 		}
 		if (f1PosA < 1) {
 			
 			field1A.SetValue (eden, f1PosA);
-			f1PosA+=0.01f;		
+			f1PosA+=0.01f* Time.deltaTime * 50f;		
 		}
 		if (f2PosA > 0.0001f){
 			//field2A.SetValue (eden, f2PosA);
-			f2PosA -= 0.01f;
+			f2PosA -= 0.01f* Time.deltaTime * 50f;
 		}
 	}
 

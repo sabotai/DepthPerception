@@ -10,7 +10,7 @@ public class SlaveMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		startLocation = master.localPosition;
-		Debug.Log("Master start location is : " + master.localPosition);
+		//Debug.Log("Master start location is : " + master.localPosition);
 
 		if (GetComponent<Rigidbody>() != null){
 			usingRigidBody = true;
