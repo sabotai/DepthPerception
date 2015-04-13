@@ -9,16 +9,25 @@ public class easeOutPosition : MonoBehaviour {
 	private float currentLerpTime;
 	private Vector3 startPos;
 	private bool done = false;
+	private bool runOnce = false;
 
 	// Use this for initialization
 	void Start () {
+		
 		startPos = transform.position;
 		currentLerpTime = Time.time;
+
 		
+	}
+
+	void onEnable(){
+
+		currentLerpTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (!done){
 			currentLerpTime += Time.deltaTime;
 			if (currentLerpTime > tripTime) {
