@@ -21,7 +21,7 @@ public class InstantiateRandom : MonoBehaviour {
 	void Start () {
 		ovrPlayer = GameObject.Find ("OVRPlayerController").transform;
 		howMany = PlayerPrefs.GetInt ("layerProgress") - 1;
-		Debug.Log ("howMany to randomly instantiate = " + howMany);
+		//Debug.Log ("howMany to randomly instantiate = " + howMany);
 	}
 	
 	// Update is called once per frame
@@ -62,7 +62,7 @@ public class InstantiateRandom : MonoBehaviour {
 		echo = Instantiate (instantiationObj, Pos, Rot) as GameObject;
 		
 		float multi = multiNorm (meanPoint0, meanPoint1, pointBalance, standardDeviation);
-		Debug.Log (multi);
+		//Debug.Log (multi);
 		echo.transform.localScale = instantiationObj.transform.lossyScale * multi;
 		echo.transform.LookAt(previous);
 
@@ -74,10 +74,10 @@ public class InstantiateRandom : MonoBehaviour {
 		float useMean;
 		if (which <= balance){
 			useMean = mean0;
-			Debug.Log ("use mean 0");
+			//Debug.Log ("use mean 0");
 		} else {
 			useMean = mean1;
-			Debug.Log ("use mean 1");
+			//Debug.Log ("use mean 1");
 		}
 		return distNormal (useMean, stdDev);
 		            
