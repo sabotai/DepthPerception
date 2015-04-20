@@ -17,10 +17,11 @@ public class DebugAdvance : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Return)){
 			
 			GameObject room = GameObject.Find("1208+center");
-			room.GetComponent<easeOutPosition>().terminateSceneMode = true;
-			room.GetComponent<easeOutPosition>().runOnce = true;
-			room.GetComponent<easeOutPosition>().enabled = true;
-
+			if (room.GetComponent<easeOutPosition>().enabled == false){
+				room.GetComponent<easeOutPosition>().terminateSceneMode = true;
+				room.GetComponent<easeOutPosition>().runOnce = true;
+				room.GetComponent<easeOutPosition>().enabled = true;
+			}
 		}
 
 	}

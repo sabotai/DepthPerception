@@ -24,21 +24,24 @@ public class easeOutPosition : MonoBehaviour {
 	void onEnable(){
 
 		currentLerpTime = Time.time;
+		Debug.Log ("updated start time");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (runOnce){
-			
+			//set the start time to the current time if desired to start after scene start
 			currentLerpTime = Time.time;
+			tripTime += currentLerpTime; //push the triptime down to account for the late start
 			runOnce = false;
-			Debug.Log ("easeOutPosition runOnce just ran");
+			Debug.Log ("easeOutPosition runOnce just ran... currentLerpTime = " + currentLerpTime);
 		}
 
 
 			if (!done){
 				currentLerpTime += Time.deltaTime;
 				if (currentLerpTime > tripTime) {
+					//no longer than the trip time
 					currentLerpTime = tripTime;
 				}
 
@@ -54,14 +57,14 @@ public class easeOutPosition : MonoBehaviour {
 					if (t >= 0.999f){
 						GameObject fader = GameObject.Find("guiFader");
 						fader.GetComponent<ScreenFadeInOut>().fadeOut = true;
-					Debug.Log ("fadeOut activated");
-					terminateSceneMode = false;
+						Debug.Log ("fadeOut activated");
+						terminateSceneMode = false;
 					}
 				}
 
 				if (t == 1f){
 					done = true;
-					//Debug.Log ("ease out done");
+					Debug.Log ("ease out done");
 				}
 			}
 

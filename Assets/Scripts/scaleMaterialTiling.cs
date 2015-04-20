@@ -24,7 +24,7 @@ public class scaleMaterialTiling : MonoBehaviour {
 		myTime = modTime * modTime * modTime * (modTime * (6f*modTime - 15f)+10f);
 		//if (tileX && !tileY){
 		//rend.material.mainTextureScale = new Vector2 (1f, Mathf.Lerp (tilingMin, tilingMax, Time.time * timeModulator));
-
+		
 		rend.material.mainTextureScale = new Vector2 (1f, Mathf.PingPong (myTime * timeModulator, tilingMax));
 		//}
 		if (tileY && !tileX){
