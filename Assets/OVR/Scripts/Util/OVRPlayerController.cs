@@ -212,6 +212,18 @@ public class OVRPlayerController : MonoBehaviour
 
 		bool dpad_move = false;
 
+		
+		// Joystick
+		
+		//Input.ResetInputAxes();
+
+		if (Input.GetAxis("VerticalJ") > 0)    moveForward = true;
+		//if (Input.GetAxis("HorizontalJ") < 0)  moveRight      = true;
+		if (Input.GetAxis("VerticalJ") < 0)  moveBack      = true; 
+		//if (Input.GetAxis("HorizontalJ") > 0) moveLeft   = true;
+		Debug.Log ("Joystick - horizontal: " + Input.GetAxis("HorizontalJ") + "    vertical    " + Input.GetAxis("VerticalJ"));
+
+	
 		if (OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.Up))
 		{
 			moveForward = true;
