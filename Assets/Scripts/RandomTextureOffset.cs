@@ -13,6 +13,8 @@ public class RandomTextureOffset : MonoBehaviour {
 	void Start () {
 		//rend = GetComponent<Renderer> ();
 		currentLayer = PlayerPrefs.GetInt("layerProgress");
+
+		//set the static transparency to inverse scene progress
 		mat.SetColor ("_Color", new Color(1.0f, 1.0f, 1.0f, (currentLayer * alphaMultiplier)/100f));
 	}
 	

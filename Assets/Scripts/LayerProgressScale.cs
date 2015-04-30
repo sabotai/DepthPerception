@@ -33,6 +33,12 @@ public class LayerProgressScale : MonoBehaviour {
 				right.GetComponent<SunShafts> ().enabled = true;
 				left.GetComponent<SunShafts> ().enabled = true;
 			}
+			if (currentState > 10){
+				right.GetComponent<DepthOfFieldScatter> ().enabled = true;
+				left.GetComponent<DepthOfFieldScatter> ().enabled = true;
+
+				right.GetComponent<DepthOfFieldScatter> ().focalDistance = 8 * (currentState-10)/2;
+			}
 		}
 
 	}
