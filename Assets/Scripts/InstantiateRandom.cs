@@ -20,7 +20,7 @@ public class InstantiateRandom : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ovrPlayer = GameObject.Find ("OVRPlayerController").transform;
-		howMany = PlayerPrefs.GetInt ("layerProgress") - 1;
+		howMany = PlayerPrefs.GetInt ("layerProgress")/2;
 		//Debug.Log ("howMany to randomly instantiate = " + howMany);
 	}
 	
