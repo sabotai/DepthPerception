@@ -15,7 +15,15 @@ public class RandomTextureOffset : MonoBehaviour {
 		currentLayer = PlayerPrefs.GetInt("layerProgress");
 
 		//set the static transparency to inverse scene progress
-		mat.SetColor ("_Color", new Color(1.0f, 1.0f, 1.0f, (currentLayer * alphaMultiplier)/100f));
+		if (currentLayer < 10) {
+			mat.SetColor ("_Color", new Color(1.0f, 1.0f, 1.0f, (currentLayer * alphaMultiplier)/100f));
+		} else {
+			//start dialing it down after 10 layers (actually 5, but whatevs)
+			float curr = 1.0f-(currentLayer * alphaMultiplier)/50f;
+			float current = Mathf.Clamp(curr, 0,1);
+				Debug.Log ("setting trans to : " + current);
+			mat.SetColor ("_Color", new Color(1.0f, 1.0f, 1.0f, current));
+		}
 	}
 	
 	// Update is called once per frame

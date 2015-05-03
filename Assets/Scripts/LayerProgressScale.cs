@@ -36,8 +36,12 @@ public class LayerProgressScale : MonoBehaviour {
 			if (currentState > 10){
 				right.GetComponent<DepthOfFieldScatter> ().enabled = true;
 				left.GetComponent<DepthOfFieldScatter> ().enabled = true;
-
-				right.GetComponent<DepthOfFieldScatter> ().focalDistance = 8 * (currentState-10)/2;
+				
+				right.GetComponent<DepthOfFieldScatter> ().focalLength = 8 * (currentState-10)/2;
+				left.GetComponent<DepthOfFieldScatter> ().focalLength = 8 * (currentState-10)/2;
+				
+				left.GetComponent<DepthOfFieldScatter> ().maxBlurSize = 30;
+				right.GetComponent<DepthOfFieldScatter> ().maxBlurSize = 30;
 			}
 		}
 

@@ -16,6 +16,7 @@ public class fadeIn : MonoBehaviour {
 	public float lowThresh = 0.17f;
 	public float highThresh = 3f;
 	public float increment = 0.01f;
+	private int currentLayer;
 
 	// Use this for initialization
 	void Start () {
@@ -26,12 +27,13 @@ public class fadeIn : MonoBehaviour {
 		}
 
 		*/
+		currentLayer = PlayerPrefs.GetInt("layerProgress");
 
 		dofs = GetComponent<DepthOfFieldScatter>();
 		field1 = dofs.GetType().GetField("focalLength");
 		field2 = dofs.GetType().GetField("aperture");
 		f1Pos = 3f;
-		f2Pos = 14f;
+		f2Pos = 14f + (currentLayer/8f);
 
 		f1PosA = 0f;
 		f2PosA = 5f;
@@ -40,7 +42,9 @@ public class fadeIn : MonoBehaviour {
 		//highThresh = 3f;
 		//increment = 0.01f;
 		upDownSwitch = false;
-
+		
+		GameObject.Find("RightEyeAnchor").GetComponent<DepthOfFieldScatter> ().maxBlurSize += (currentLayer * 25);
+		GameObject.Find("LeftEyeAnchor").GetComponent<DepthOfFieldScatter> ().maxBlurSize+= (currentLayer * 25);
 
 		
 		eden = GetComponent<EdgeDetectEffectNormals>();
@@ -56,8 +60,9 @@ public class fadeIn : MonoBehaviour {
 			//Debug.Log ("increase pos");
 			field1.SetValue (dofs, f1Pos);
 			field2.SetValue (dofs, f2Pos);
-			f1Pos -= increment;
+			f1Pos -= increment * Time.deltaTime;
 			if (f2Pos < 26.6){
+
 				f2Pos += increment * Time.deltaTime * 50f;}
 		}
 		if (f1PosA < 1) {

@@ -43,8 +43,8 @@ public class InstantiateRandom : MonoBehaviour {
 		}
 	}
 	
-	Vector3 findPos(float whichOne){
-		Vector3 pos = Random.insideUnitSphere * radius + ovrPlayer.transform.position;
+	Vector3 findPos(float radMult){
+		Vector3 pos = Random.insideUnitSphere * (radMult * radius) + ovrPlayer.transform.position;
 		return pos;
 	}
 	
@@ -57,13 +57,23 @@ public class InstantiateRandom : MonoBehaviour {
 	
 	void create(){
 		GameObject echo;
-		Vector3 Pos = findPos (count);
+		Vector3 Pos = findPos (1f);
 		Quaternion Rot = findRot (ovrPlayer.localPosition, Pos);
 		echo = Instantiate (instantiationObj, Pos, Rot) as GameObject;
 		
 		float multi = multiNorm (meanPoint0, meanPoint1, pointBalance, standardDeviation);
-		//Debug.Log (multi);
 		echo.transform.localScale = instantiationObj.transform.lossyScale * multi;
+
+
+		if (multi > (meanPoint1-meanPoint0 / 2)){
+			//Debug.Log (multi);
+			//give the larger ones a bigger randomsphere so theyre not as crowded
+			echo.transform.position = findPos (7f)- new Vector3(0f,Random.Range (100f,300f),0f);
+
+
+		}
+
+
 		echo.transform.LookAt(previous);
 
 		previous = echo.transform;
