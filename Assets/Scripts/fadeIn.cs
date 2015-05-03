@@ -33,7 +33,7 @@ public class fadeIn : MonoBehaviour {
 		field1 = dofs.GetType().GetField("focalLength");
 		field2 = dofs.GetType().GetField("aperture");
 		f1Pos = 3f;
-		f2Pos = 14f + (currentLayer/8f);
+		f2Pos = 14f + ((currentLayer-2)/8f);
 
 		f1PosA = 0f;
 		f2PosA = 5f;
@@ -43,8 +43,8 @@ public class fadeIn : MonoBehaviour {
 		//increment = 0.01f;
 		upDownSwitch = false;
 		
-		GameObject.Find("RightEyeAnchor").GetComponent<DepthOfFieldScatter> ().maxBlurSize += (currentLayer * 25);
-		GameObject.Find("LeftEyeAnchor").GetComponent<DepthOfFieldScatter> ().maxBlurSize+= (currentLayer * 25);
+		GameObject.Find("RightEyeAnchor").GetComponent<DepthOfFieldScatter> ().maxBlurSize += ((currentLayer-2) * 25);
+		GameObject.Find("LeftEyeAnchor").GetComponent<DepthOfFieldScatter> ().maxBlurSize+= ((currentLayer-2) * 25);
 
 		
 		eden = GetComponent<EdgeDetectEffectNormals>();

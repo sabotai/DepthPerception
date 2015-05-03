@@ -8,6 +8,7 @@ public class modulateSunShafts : MonoBehaviour {
 	private float[] originalValue;// = new float[howManyCameras];
 	public float[] speed;// = new GameObject[howManyCameras];
 	private int currentLayer;
+	public AudioSource optionalAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -37,12 +38,24 @@ public class modulateSunShafts : MonoBehaviour {
 		float localSpeed;
 
 		for (int i = 0; i < cameraObject.Length; i++) {
+			if (cameraObject[i].GetComponent<SunShafts> ().enabled){
 			if (i > speed.Length){
 				localSpeed = Mathf.PingPong (Time.time * speed[speed.Length-1], originalValue[i]);
 			} else {
 				localSpeed = Mathf.PingPong (Time.time * speed[i], originalValue[i]);
 			}
-					cameraObject[i].GetComponent<SunShafts> ().sunShaftIntensity = localSpeed;
+			cameraObject[i].GetComponent<SunShafts> ().sunShaftIntensity = localSpeed;
+			//Debug.Log ("localSpeed = " + localSpeed + " and " + originalValue[i]);
+			if (Application.loadedLevel == 1){
+
+				if (!GameObject.Find ("guiFader").GetComponent<ScreenFadeInOut>().fadeOut){
+				optionalAudio.volume = 0.1f + localSpeed/originalValue[i]; //fluctuate the volume with the sunshafts-- .1 is the minimum
+				} else {
+					optionalAudio.volume -= 0.1f * Time.deltaTime; //fade it out when the time comes
+
 				}
+			}
+		}
+		}
 	}
 }
