@@ -21,10 +21,14 @@ public class TriggerSeek : MonoBehaviour {
 	void FixedUpdate () {
 
 		
+		//if (Input.GetKey(KeyCode.Space)) activateSeek = true;
+		Vector3 temp = comeToMe.position - transform.position;
+		float tempMag =  1f - temp.sqrMagnitude / totalDistance.sqrMagnitude;
+		//Debug.Log ("tempMag = " + tempMag);
+		if (tempMag > .995f) activateSeek = true;
+
 		if (Input.GetKey(KeyCode.Space) || activateSeek){
 			//find the percentage to destination
-			Vector3 temp = comeToMe.position - transform.position;
-			float tempMag =  1f - temp.sqrMagnitude / totalDistance.sqrMagnitude;
 			//Debug.Log ("difference is " + tempMag);
 
 			transform.LookAt (lookAtMe);

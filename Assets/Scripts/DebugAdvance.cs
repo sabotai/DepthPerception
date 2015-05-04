@@ -18,7 +18,7 @@ public class DebugAdvance : MonoBehaviour {
 			
 			GameObject room = GameObject.Find("1208+center");
 			if (room.GetComponent<easeOutPosition>().enabled == false){
-				room.GetComponent<easeOutPosition>().terminateSceneMode = true;
+				room.GetComponent<easeOutPosition>().terminateSceneMode = false;
 				room.GetComponent<easeOutPosition>().runOnce = true;
 				room.GetComponent<easeOutPosition>().enabled = true;
 			}

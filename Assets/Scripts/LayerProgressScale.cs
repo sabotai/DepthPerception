@@ -33,6 +33,17 @@ public class LayerProgressScale : MonoBehaviour {
 				right.GetComponent<SunShafts> ().enabled = true;
 				left.GetComponent<SunShafts> ().enabled = true;
 			}
+			if (currentState > 7){
+				if (currentState < 10){
+				left.GetComponent<EdgeDetectEffectNormals>().edgesOnly += (currentState-7) * 0.1f;
+				right.GetComponent<EdgeDetectEffectNormals>().edgesOnly += (currentState-7) * 0.1f;
+				} else {
+					
+					left.GetComponent<EdgeDetectEffectNormals>().edgesOnly += 0.25f + (currentState-7) * 0.01f;
+					right.GetComponent<EdgeDetectEffectNormals>().edgesOnly += 0.25f +(currentState-7) * 0.01f;
+				}
+			}
+
 			if (currentState > 10){
 				right.GetComponent<DepthOfFieldScatter> ().enabled = true;
 				left.GetComponent<DepthOfFieldScatter> ().enabled = true;
