@@ -9,19 +9,21 @@ public class instantiateGuests : MonoBehaviour {
 	public float radius = 1f;
 	public float circumDensity = 5f;
 	public float radianSpreadMultiplier = 0.1f;
-	private Transform ovrPlayer;
+	public Transform ovrPlayer;
 	private int count = 0; //which one in the current series
 	private int kCount = 0; //total number of kinect skeletons
-	private GameObject kinectObj;
+	public GameObject kinectObj;
 
 	// Use this for initialization
 	void Start () {
-		ovrPlayer = GameObject.Find ("OVRPlayerController").transform;
-		kinectObj = GameObject.Find ("KinectPrefab");
+		ovrPlayer = GameObject.Find("OVRPlayerController").transform;
+		//kinectObj = GameObject.Find("KinectPrefab");
+		//Debug.Log (kinectObj.GetComponent<SkeletonWrapper>().enabled);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//kinectObj = GameObject.Find("KinectPrefab");
 		if (kinectObj.GetComponent<SkeletonWrapper>().trackedCount > kCount){
 			//create a new series if you find a new skeleton
 			createNew = true;
@@ -45,14 +47,14 @@ public class instantiateGuests : MonoBehaviour {
 		float rad = ((whichOne/circumDensity) * (4* Mathf.PI)) - 2 * Mathf.PI;
 		rad = rad + (rad * radianSpreadMultiplier);
 
-		float h = ovrPlayer.localPosition.x;
-		float k = ovrPlayer.localPosition.z;
+		float h = ovrPlayer.position.x;
+		float k = ovrPlayer.position.z;
 
 		float newRadius = radius + ((count / circumDensity) * radius);
 		float x = newRadius*Mathf.Cos(rad) + h;
 		float z = newRadius*Mathf.Sin(rad) + k;
 
-		Vector3 pos = new Vector3 (x, ovrPlayer.localPosition.y, z);
+		Vector3 pos = new Vector3 (x, ovrPlayer.position.y, z);
 		return pos;
 	}
 
@@ -69,5 +71,6 @@ public class instantiateGuests : MonoBehaviour {
 		Quaternion Rot = findRot (ovrPlayer.localPosition, Pos);
 		kinectParticipant = Instantiate (instantiationObj, Pos, Rot) as GameObject;
 		kinectParticipant.transform.localScale = instantiationObj.transform.lossyScale;
+		Debug.Log ("creating new guest");
 	}
 }
