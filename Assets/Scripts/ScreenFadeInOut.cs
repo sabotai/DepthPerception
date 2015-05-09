@@ -100,7 +100,7 @@ public class ScreenFadeInOut : MonoBehaviour
 		// Start fading towards black.
 		//FadeToBlack();
 		FadeToWhite ();
-
+		
 		// If the screen is almost black...
 		if(GetComponent<GUITexture>().color.a >= 0.95f){
 			// ... load the next level.
@@ -110,17 +110,35 @@ public class ScreenFadeInOut : MonoBehaviour
 			int lvlIndex = Application.loadedLevel;
 			int levelCount = Application.levelCount - 1;
 			int loadMe = lvlIndex;
-
+			
 			Debug.Log ("this level index = " + lvlIndex + ", level count = " + levelCount);
-
+			
 			if (lvlIndex < levelCount){
 				loadMe = lvlIndex + 1;
 			} else {
 				loadMe = 0;
 			}
 			
-
+			
 			Application.LoadLevel(loadMe);
+		}
+	}
+
+	public void EndScene (int sceneNumber)
+	{
+		// Make sure the texture is enabled.
+		GetComponent<GUITexture>().enabled = true;
+		
+		// Start fading towards black.
+		//FadeToBlack();
+		FadeToWhite ();
+		
+		// If the screen is almost black...
+		if(GetComponent<GUITexture>().color.a >= 0.5f){
+			// ... load the next level.
+
+			
+			Application.LoadLevel(sceneNumber);
 		}
 	}
 
