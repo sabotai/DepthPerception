@@ -1,6 +1,7 @@
 Shader "Aubergine/Replacement/Wiggle" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
+    	_Intensity ("Intensity", Float) = 10
 	}
 	SubShader {
 
@@ -32,10 +33,11 @@ Shader "Aubergine/Replacement/Wiggle" {
 				#pragma fragment frag
 
 				sampler2D _MainTex;
+				Float _Intensity;
 
 				half4 frag (v2f i) : COLOR {
-					i.uv.x += sin(_Time.y + i.uv.x * 10) * 0.01;
-					i.uv.y += cos(_Time.y + i.uv.y * 10) * 0.01;
+					i.uv.x += sin(_Time.y + i.uv.x * _Intensity) * 0.01;
+					i.uv.y += cos(_Time.y + i.uv.y * _Intensity) * 0.01;
 					half4 col = tex2D(_MainTex, i.uv);
 					return col;
 				}

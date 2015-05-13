@@ -26,8 +26,8 @@ public class LayerProgressScale : MonoBehaviour {
 				(right.GetComponent("ScreenOverlay") as MonoBehaviour).enabled = !(GameObject.Find("RightEyeAnchor").GetComponent("ScreenOverlay") as MonoBehaviour).enabled;
 				(left.GetComponent("ScreenOverlay") as MonoBehaviour).enabled = !(GameObject.Find("LeftEyeAnchor").GetComponent("ScreenOverlay") as MonoBehaviour).enabled;
 				//Debug.Log ("screenoverlay status = " + (GameObject.Find("RightEyeAnchor").GetComponent("ScreenOverlay") as MonoBehaviour).enabled);
-				
-			
+				left.GetComponent<ScreenOverlay>().intensity = currentState;
+				right.GetComponent<ScreenOverlay>().intensity = currentState;
 			}
 			if (currentState > 4){
 				right.GetComponent<SunShafts> ().enabled = true;
@@ -44,7 +44,7 @@ public class LayerProgressScale : MonoBehaviour {
 				}
 			}
 
-			if (currentState > 10){
+			if (currentState > 8){
 				right.GetComponent<DepthOfFieldScatter> ().enabled = true;
 				left.GetComponent<DepthOfFieldScatter> ().enabled = true;
 				

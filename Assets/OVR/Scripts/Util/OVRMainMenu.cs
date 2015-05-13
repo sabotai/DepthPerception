@@ -244,6 +244,9 @@ public class OVRMainMenu : MonoBehaviour
 	        c.renderMode = RenderMode.WorldSpace;
 	        c.pixelPerfect = false;
 #endif
+
+
+		//OVRManager.display.mirrorMode = false;
     }
 	
 	/// <summary>
