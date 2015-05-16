@@ -13,11 +13,13 @@ public class OSCSend : MonoBehaviour {
 
 	private UdpClient clientP = new UdpClient();
 	private ASCIIEncoding byteEncoder = new ASCIIEncoding();
+	private string lastInput;
 
 	// Use this for initialization
 	void Start () {
 		//clientP.Connect("127.0.0.1", 6666);
 		clientP.Connect ("255.255.255.255", 6666);
+		lastInput = "";
 	}
 	
 	// Update is called once per frame
@@ -30,7 +32,10 @@ public class OSCSend : MonoBehaviour {
 		Debug.Log ("xpercent = " + xPercent + "  ypercent = " + yPercent);
 
 		if (Input.inputString != ""){
-			SendString ("key:" + Input.inputString);
+			if (Input.inputString != lastInput){
+				SendString ("key:" + Input.inputString);
+				Debug.Log ("sending " + Input.inputString);
+			}
 		}
 		
 		if (Input.GetKey(KeyCode.UpArrow)){
@@ -45,6 +50,15 @@ public class OSCSend : MonoBehaviour {
 		if (Input.GetKey(KeyCode.RightArrow)){
 			SendString("dir:" + "RIGHT");
 		}
+		if (Input.GetKey(KeyCode.Mouse0))
+			SendString("mouseClick:" + "mLEFT");
+
+
+		if (Input.GetKey(KeyCode.Mouse1))
+			SendString("mouseClick:" + "mRIGHT");
+		
+
+				lastInput = Input.inputString;
 	}
 	
 	public void SendInt(string routeString, int value){

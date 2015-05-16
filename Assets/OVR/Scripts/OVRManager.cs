@@ -498,7 +498,7 @@ public class OVRManager : MonoBehaviour
 		QualitySettings.vSyncCount = 0;
 
 		// try to render at 60fps
-		Application.targetFrameRate = 60;
+		Application.targetFrameRate = 75;
 		// don't allow the app to run in the background
 		Application.runInBackground = false;
 		// Disable screen dimming
