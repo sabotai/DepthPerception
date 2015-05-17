@@ -4,11 +4,18 @@ using System.Collections;
 public class NextScene : MonoBehaviour {
 
 	bool condition1, condition2;
+	private float rayDist;
 
 	// Use this for initialization
 	void Start () {
 		condition1 = false;
 		condition2 = false;
+
+		if (Application.loadedLevel == 0){
+			rayDist = 10f; 
+		} else {
+			rayDist = 3f;
+		}
 
 	}
 	
@@ -17,7 +24,7 @@ public class NextScene : MonoBehaviour {
 		RaycastHit rayHit = new RaycastHit ();//blank container for info
 		Ray ray = new Ray (transform.position, transform.forward);
 		
-		if (Physics.Raycast (ray, out rayHit, 6f)){
+		if (Physics.Raycast (ray, out rayHit, rayDist)){
 			Collider collider1 = rayHit.collider;
 			Debug.DrawLine(ray.origin, rayHit.point);
 			

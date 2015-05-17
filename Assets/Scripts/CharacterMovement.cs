@@ -29,6 +29,8 @@ public class CharacterMovement : MonoBehaviour {
 		//get axis input from player (W, A, S, and D keys/Arrow keys)
 		float verticalAxis = Input.GetAxis("Vertical");
 		float horizontalAxis = Input.GetAxis("Horizontal");
+		float verticalAxisJ = Input.GetAxis("VerticalJ");
+		float horizontalAxisJ = Input.GetAxis("HorizontalJ");
 
 		//get the forward-facing direction of the camera
 		Vector3 cameraForward = mainCamera.TransformDirection(Vector3.forward);
@@ -58,7 +60,7 @@ public class CharacterMovement : MonoBehaviour {
 		}
 
 		//if there is any player input...
-		if (verticalAxis != 0 || horizontalAxis != 0)
+		if (verticalAxis != 0 || horizontalAxis != 0 || verticalAxisJ != 0 || horizontalAxisJ != 0)
 		{
 			//if the run modifier key is pressed
 			if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
